@@ -13,7 +13,6 @@ plotter <- function(inp_data = NULL, graphType = NULL,
   }
   data_clean <- cleanData(inp_data)
   data_build <- editData(data_clean, graphType, graphOptions)
-  browser()
   saveData(data_build)
   printMessage()
   return(invisible(NULL))
@@ -33,6 +32,7 @@ editData <- function(data_clean, graphType, graphOptions){
   if(is.null(graphOptions$ylab)){
     graphOptions$ylab <- graphOptions$y
   }
+  
   labs <- list()
   labs$xlab <- graphOptions$xlab
   labs$ylab <- graphOptions$ylab
@@ -47,6 +47,8 @@ editData <- function(data_clean, graphType, graphOptions){
 }
 
 saveData <- function(data_build){
+  json <- RJSONIO::toJSON(data_build)
+  cat(json, file = "./new_demo_file.json")
   invisible(NULL)
 }
 
