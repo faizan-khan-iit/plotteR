@@ -12,9 +12,37 @@
 	 	}
 	 	
 	 	// plot data
+	 	
 	 	// Create SVG element
 	 	var w = 500 // Width 
 	 	var h = 500 // Height
+		
+	 	// Scales
+	 	var padding = 35;
+	 	var xScale = d3.scale.linear()
+                     .domain([ plot_data[["ranges"]][["xrange"]][[0]],
+                     plot_data[["ranges"]][["xrange"]][[1]] ])
+                     .range([padding, w - padding]);
+
+        var yScale = d3.scale.linear()
+                     .domain([ plot_data[["ranges"]][["yrange"]][[0]],
+                     plot_data[["ranges"]][["yrange"]][[1]] ])
+                     .range([h - padding, padding]);
+
+        // Axes
+        // Define X axis
+        var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient("bottom")
+                  .ticks(6);
+
+        // Define Y axis
+		var yAxis = d3.svg.axis()
+		          .scale(yScale)
+		          .orient("left")
+		          .ticks(6);
+
+        // Plot
 		var svg = d3.select("body")
 		            .append("svg")
 		            .attr("width", w)
@@ -25,14 +53,23 @@
 			.enter()
 			.append("circle")
 			.attr("cx", function(d) {
-			    return d[0];
+			    return xScale(d[0]);
 			})
 			.attr("cy", function(d) {
-			    return d[1];
+			    return yScale(d[1]);
 			})
 			.attr("r", 3);
-	}
+		
+		svg.append("g")
+		    .attr("class", "axis")
+		    .attr("transform", "translate(0," + (h - padding) + ")")
+		    .call(xAxis);
 
+		svg.append("g")
+		    .attr("class", "axis")
+		    .attr("transform", "translate(" + padding + ", 0)")
+		    .call(yAxis);
+	}
 	plot_data_f(json_data);
 }
 
