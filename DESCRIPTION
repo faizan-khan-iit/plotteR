@@ -1,0 +1,10 @@
+Package: plotteR
+Type: Package
+Title: Plot data with R and JS
+Version: 0.1.0
+Author: Faizan Khan
+Maintainer: Faizan Khan <faizan.khan.iitbhu@gmail.com>
+Description: This package is useless and plots data. Made for applying principles of software engineering.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
