@@ -48,7 +48,7 @@ editData <- function(data_clean, graphType, graphOptions){
 
 saveData <- function(data_build){
   json <- RJSONIO::toJSON(data_build)
-  cat(json, file = "./new_demo_file.json")
+  cat(json, file = "../inst/new_demo_file.json")
   invisible(NULL)
 }
 
