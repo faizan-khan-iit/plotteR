@@ -1,3 +1,9 @@
+#' Saves plot data to disk 
+#' @param inp_data data to be plotted
+#' @param graphType type of graph to be plotted
+#' @param graphOptions options for the selected graph
+#' @return nothing, data is stored to disk
+#' @export
 plotter <- function(inp_data = NULL, graphType = NULL,
                     graphOptions = list()){
   if(is.null(inp_data)){
