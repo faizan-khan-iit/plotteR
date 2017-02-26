@@ -3,6 +3,7 @@
 #' @param graphType type of graph to be plotted
 #' @param graphOptions options for the selected graph
 #' @return nothing, data is stored to disk
+#' @import htmlwidgets
 #' @export
 plotter <- function(inp_data = NULL, graphType = NULL,
                     graphOptions = list()){
@@ -54,7 +55,9 @@ editData <- function(data_clean, graphType, graphOptions){
 
 saveData <- function(data_build){
   json <- RJSONIO::toJSON(data_build)
-  cat(json, file = "../inst/new_demo_file.json")
+  file_name <- "./inst/new_demo_file.json"
+  cat(json, file = file_name)
+  htmlwidgets::createWidget("plotter", x=list(file_name = file_name))
   invisible(NULL)
 }
 
