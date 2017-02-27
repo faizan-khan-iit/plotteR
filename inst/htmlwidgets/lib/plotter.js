@@ -1,18 +1,21 @@
+ // Plot the loaded json data
  var plotter = function(json_data){
 	plot_data = {}; // To store data
+
 	var plot_data_f = function(json_data){
 		plot_data[["data"]] = json_data[["ans"]];
 		plot_data[["labs"]] = json_data[["labs"]];
 		plot_data[["ranges"]] = json_data[["ranges"]];
 		len = json_data[["ans"]][["x"]].length;
-			
+		
+		// Change data format for scatter plot	
 	 	var data_scatter = [];
 	 	for(var i=0; i<len; i++){
 	 		data_scatter.push([ plot_data[["data"]][["x"]][[i]], plot_data[["data"]][["y"]][[i]] ]);
 	 	}
 	 	
-	 	// plot data
-	 	
+	 	// Plot data
+
 	 	// Create SVG element
 	 	var w = 500 // Width 
 	 	var h = 500 // Height
@@ -73,6 +76,7 @@
 	plot_data_f(json_data);
 }
 
+// Load data and pass to plotter
 var loader = function(file_name){
 	var json_data;
 	// Load data from file
