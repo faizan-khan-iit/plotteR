@@ -3,7 +3,6 @@
 #' @param graphType type of graph to be plotted
 #' @param graphOptions options for the selected graph
 #' @return nothing, data is stored to disk
-#' @import htmlwidgets
 #' @export
 plotter <- function(inp_data = NULL, graphType = NULL,
                     graphOptions = list()){
@@ -69,7 +68,8 @@ saveData <- function(data_build){
   # Create htmlwidget
   # Note: Pass the data build in the plotter function
   # or pass only th saved file name???
-  htmlwidgets::createWidget("plotter", x=list(file_name = file_name))
+  htmlwidgets::createWidget("plotterWidget", x=list(file_name = file_name),
+                            width = 400, height = 400)
   invisible(NULL)
 }
 

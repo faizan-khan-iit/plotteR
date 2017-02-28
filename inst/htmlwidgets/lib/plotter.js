@@ -1,5 +1,5 @@
  // Plot the loaded json data
- var plotter = function(json_data){
+ var plotter = function(json_data, element){
 	plot_data = {}; // To store data
 
 	var plot_data_f = function(json_data){
@@ -46,7 +46,7 @@
 		          .ticks(6);
 
         // Plot
-		var svg = d3.select("body")
+		var svg = d3.select(element)
 		            .append("svg")
 		            .attr("width", w)
 		            .attr("height", h);
@@ -77,7 +77,7 @@
 }
 
 // Load data and pass to plotter
-var loader = function(file_name){
+var loader = function(file_name, element){
 	var json_data;
 	// Load data from file
 	d3.json(file_name, function(error, data) {
@@ -87,6 +87,6 @@ var loader = function(file_name){
 	        console.log(data);   //Log the data.
 	    }
 		json_data = data;
-		plotter(json_data);
+		plotter(json_data, element);
 	});
 }
