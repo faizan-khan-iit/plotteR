@@ -66,9 +66,9 @@ saveData <- function(data_build){
   file_name <- "./inst/new_demo_file.json"
   cat(json, file = file_name)
   # Create htmlwidget
-  # Note: Pass the data build in the plotter function
-  # or pass only th saved file name???
-  htmlwidgets::createWidget("plotterWidget", x=list(file_name = file_name),
+  # Note: Pass the data_build object in the plotter function
+  # or pass only the saved file name???
+  htmlwidgets::createWidget("plotter", x=list(file_name = file_name),
                             width = 400, height = 400)
   invisible(NULL)
 }

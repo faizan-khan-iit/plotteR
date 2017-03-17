@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-  name: "plotterWidget",
+  name: "plotter",
 
   type: "output",
 
@@ -24,7 +24,7 @@ HTMLWidgets.widget({
       // instance we're returning from factory(). This is generally a
       // good idea for extensibility--it helps users of this widget
       // interact directly with plotter, if needed.
-      s: plot1
+      // s: plot1
     };
   }
 });
