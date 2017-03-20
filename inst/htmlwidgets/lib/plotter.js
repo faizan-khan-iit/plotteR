@@ -75,22 +75,3 @@
 	}
 	plot_data_f(json_data);
 }
-
-// Load data and pass to plotter
-var loader = function(file_name, element){
-	/*
-	var json_data;
-	// Load data from file
-	d3.json(file_name, function(error, data) {
-		if (error) {
-			console.log(error);  //Log the error.
-	    } else {
-	        console.log(data);   //Log the data.
-	    }
-		json_data = data;
-		plotter(json_data, element);
-	});
- 	*/
- 	var data_json = file_name;
- 	plotter(data_json, element);
-}
