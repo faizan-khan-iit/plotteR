@@ -46,7 +46,7 @@
 		          .ticks(6);
 
         // Plot
-		var svg = d3.select(element)
+		var svg = d3.select("body")
 		            .append("svg")
 		            .attr("width", w)
 		            .attr("height", h);
@@ -78,6 +78,7 @@
 
 // Load data and pass to plotter
 var loader = function(file_name, element){
+	/*
 	var json_data;
 	// Load data from file
 	d3.json(file_name, function(error, data) {
@@ -89,4 +90,7 @@ var loader = function(file_name, element){
 		json_data = data;
 		plotter(json_data, element);
 	});
+ 	*/
+ 	var data_json = file_name;
+ 	plotter(data_json, element);
 }

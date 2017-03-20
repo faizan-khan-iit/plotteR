@@ -1,9 +1,0 @@
-dependencies:
-  - name: plotter
-    version: 1.0.0
-    src: htmlwidgets/lib
-    script: plotter.js
-  - name: d3
-    version: 3.5.16
-    src: htmlwidgets/lib/d3
-    script: d3.min.js

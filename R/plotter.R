@@ -3,6 +3,7 @@
 #' @param graphType type of graph to be plotted
 #' @param graphOptions options for the selected graph
 #' @return nothing, data is stored to disk
+#' @import htmlwidgets
 #' @export
 plotter <- function(inp_data = NULL, graphType = NULL,
                     graphOptions = list()){
@@ -26,8 +27,6 @@ plotter <- function(inp_data = NULL, graphType = NULL,
   # Get detailed info on data
   data_build <- editData(data_clean, graphType, graphOptions)
   saveData(data_build)
-  printMessage()
-  return(invisible(NULL))
 }
 
 cleanData <- function(inp_data){
@@ -61,18 +60,28 @@ editData <- function(data_clean, graphType, graphOptions){
        ranges = ranges)
 }
 
+#' Saves plot data to disk
+#' @import htmlwidgets
+#' @export
 saveData <- function(data_build){
-  json <- RJSONIO::toJSON(data_build)
-  file_name <- "./inst/new_demo_file.json"
-  cat(json, file = file_name)
+  tsv.name <- sprintf("data_plot.tsv")
+  tsv.path <- file.path("./inst", tsv.name)
+  # write.table(data_build$ans, tsv.path,
+  #             quote = FALSE, row.names = FALSE, 
+  #             sep = "\t")
+  # data_build$ans <- NULL
   # Create htmlwidget
   # Note: Pass the data_build object in the plotter function
-  # or pass only the saved file name???
-  htmlwidgets::createWidget("plotter", x=list(file_name = file_name),
-                            width = 400, height = 400)
-  invisible(NULL)
+  # or pass only the saved file name?
+  x <- RJSONIO::toJSON(data_build)
+  x <- data_build
+  htmlwidgets::createWidget(name = "plotterWidget",
+                            x,
+                            width = 400,
+                            height = 400,
+                            package = 'plotteR')
 }
 
 printMessage <- function(){
-  message("Plot saved to disk")
+  message("Plot saved to disk, opening window")
 }
