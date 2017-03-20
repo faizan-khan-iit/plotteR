@@ -4,7 +4,8 @@
 \alias{plotter}
 \title{Saves plot data to disk}
 \usage{
-plotter(inp_data = NULL, graphType = NULL, graphOptions = list())
+plotter(inp_data = NULL, graphType = NULL, graphOptions = list(),
+  directory = "~/test_dir")
 }
 \arguments{
 \item{inp_data}{data to be plotted}

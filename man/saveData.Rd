@@ -4,7 +4,7 @@
 \alias{saveData}
 \title{Saves plot data to disk}
 \usage{
-saveData(data_build)
+saveData(data_build, directory)
 }
 \description{
 Saves plot data to disk

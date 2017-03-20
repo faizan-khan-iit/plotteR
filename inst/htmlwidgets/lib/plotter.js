@@ -1,12 +1,12 @@
  // Plot the loaded json data
- var plotter = function(json_data, element){
+ var plotter = function(loaded_data, meta_data, element){
 	plot_data = {}; // To store data
 
-	var plot_data_f = function(json_data){
-		plot_data[["data"]] = json_data[["ans"]];
-		plot_data[["labs"]] = json_data[["labs"]];
-		plot_data[["ranges"]] = json_data[["ranges"]];
-		len = json_data[["ans"]][["x"]].length;
+	var plot_data_f = function(loaded_data, meta_data, element){
+		plot_data[["data"]] = loaded_data;
+		plot_data[["labs"]] = meta_data[["labs"]];
+		plot_data[["ranges"]] = meta_data[["ranges"]];
+		len = loaded_data[["ans"]][["x"]].length;
 		
 		// Change data format for scatter plot	
 	 	var data_scatter = [];
@@ -73,24 +73,23 @@
 		    .attr("transform", "translate(" + padding + ", 0)")
 		    .call(yAxis);
 	}
-	plot_data_f(json_data);
+
+	plot_data_f(loaded_data, meta_data, element);
 }
 
 // Load data and pass to plotter
-var loader = function(file_name, element){
-	/*
-	var json_data;
+var loader = function(meta_data, element){
+	var file_name = meta_data.path;
+	console.log(file_name);
+	var loaded_data;
 	// Load data from file
-	d3.json(file_name, function(error, data) {
+	d3.tsv(file_name, function(error, data) {
 		if (error) {
 			console.log(error);  //Log the error.
 	    } else {
 	        console.log(data);   //Log the data.
 	    }
-		json_data = data;
-		plotter(json_data, element);
+		loaded_data = data;
+ 		plotter(loaded_data, meta_data, element);
 	});
- 	*/
- 	var data_json = file_name;
- 	plotter(data_json, element);
 }

@@ -6,7 +6,7 @@
 #' @import htmlwidgets
 #' @export
 plotter <- function(inp_data = NULL, graphType = NULL,
-                    graphOptions = list()){
+                    graphOptions = list(), directory = "~/test_dir"){
   if(is.null(inp_data)){
     stop("No input data provided")
   }
@@ -26,7 +26,7 @@ plotter <- function(inp_data = NULL, graphType = NULL,
   data_clean <- cleanData(inp_data)
   # Get detailed info on data
   data_build <- editData(data_clean, graphType, graphOptions)
-  saveData(data_build)
+  saveData(data_build, directory)
 }
 
 cleanData <- function(inp_data){
@@ -63,19 +63,19 @@ editData <- function(data_clean, graphType, graphOptions){
 #' Saves plot data to disk
 #' @import htmlwidgets
 #' @export
-saveData <- function(data_build){
-  # tsv.name <- sprintf("data_plot.tsv")
-  # tsv.path <- file.path("./inst", tsv.name)
-  # write.table(data_build$ans, tsv.path,
-  #             quote = FALSE, row.names = FALSE, 
-  #             sep = "\t")
-  # data_build$ans <- NULL
+saveData <- function(data_build, directory){
+  tsv.name <- sprintf("data_plot.tsv")
+  tsv.path <- file.path(tools::file_path_as_absolute(directory),
+                        tsv.name)
+  write.table(data_build$ans, tsv.path,
+              quote = FALSE, row.names = FALSE,
+              sep = "\t")
+  data_build$ans <- NULL
+  data_build$path <- tsv.path
   # Create htmlwidget
-  # Note: Pass the data_build object in the plotter function
-  # or pass only the saved file name?
-  x <- data_build
+  # Note: Pass the data as saved in plot.json
   htmlwidgets::createWidget(name = "plotterWidget",
-                            x,
+                            x = data_build,
                             width = 400,
                             height = 400,
                             package = 'plotteR')
