@@ -46,7 +46,7 @@
 		          .ticks(6);
 
         // Plot
-		var svg = d3.select("body")
+		var svg = d3.select(element)
 		            .append("svg")
 		            .attr("width", w)
 		            .attr("height", h);

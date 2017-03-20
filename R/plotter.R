@@ -64,8 +64,8 @@ editData <- function(data_clean, graphType, graphOptions){
 #' @import htmlwidgets
 #' @export
 saveData <- function(data_build){
-  tsv.name <- sprintf("data_plot.tsv")
-  tsv.path <- file.path("./inst", tsv.name)
+  # tsv.name <- sprintf("data_plot.tsv")
+  # tsv.path <- file.path("./inst", tsv.name)
   # write.table(data_build$ans, tsv.path,
   #             quote = FALSE, row.names = FALSE, 
   #             sep = "\t")
@@ -73,7 +73,6 @@ saveData <- function(data_build){
   # Create htmlwidget
   # Note: Pass the data_build object in the plotter function
   # or pass only the saved file name?
-  x <- RJSONIO::toJSON(data_build)
   x <- data_build
   htmlwidgets::createWidget(name = "plotterWidget",
                             x,
