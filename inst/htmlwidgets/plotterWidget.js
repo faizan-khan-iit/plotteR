@@ -12,7 +12,7 @@ HTMLWidgets.widget({
         el.innerHTML = "A Scatter Plot";
         console.log(x);
         //////////////////////////////
-        plotter(x, el);
+        loader(x, el);
         //////////////////////////////
       },
 
