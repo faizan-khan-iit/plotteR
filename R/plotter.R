@@ -71,14 +71,18 @@ saveData <- function(data_build, directory){
               quote = FALSE, row.names = FALSE,
               sep = "\t")
   data_build$ans <- NULL
-  data_build$path <- tsv.path
+  data_build$path <- tsv.name
   # Create htmlwidget
   # Note: Pass the data as saved in plot.json
-  htmlwidgets::createWidget(name = "plotterWidget",
-                            x = data_build,
-                            width = 400,
-                            height = 400,
-                            package = 'plotteR')
+  widget <- htmlwidgets::createWidget(name = "plotterWidget",
+                                      x = data_build,
+                                      width = 400,
+                                      height = 400,
+                                      package = 'plotteR')
+  # savewidget
+  index.path <- file.path(tools::file_path_as_absolute(directory),
+                        "index.html")
+  htmlwidgets::saveWidget(widget, index.path)
 }
 
 printMessage <- function(){

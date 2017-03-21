@@ -6,12 +6,13 @@
 		plot_data[["data"]] = loaded_data;
 		plot_data[["labs"]] = meta_data[["labs"]];
 		plot_data[["ranges"]] = meta_data[["ranges"]];
-		len = loaded_data[["ans"]][["x"]].length;
+		len = plot_data[["data"]].length;
 		
 		// Change data format for scatter plot	
 	 	var data_scatter = [];
 	 	for(var i=0; i<len; i++){
-	 		data_scatter.push([ plot_data[["data"]][["x"]][[i]], plot_data[["data"]][["y"]][[i]] ]);
+	 		data_scatter.push([ plot_data[["data"]][[i]][["x"]],
+	 			plot_data[["data"]][[i]][["y"]] ]);
 	 	}
 	 	
 	 	// Plot data

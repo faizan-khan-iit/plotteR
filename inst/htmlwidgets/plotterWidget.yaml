@@ -7,6 +7,6 @@ dependencies:
     stylesheet: style.css
   - name: plotter
     version: 1.0.00
-    src: htmlwidgets/lib
+    src: htmlwidgets/lib/plotter
     script: 
       - plotter.js
